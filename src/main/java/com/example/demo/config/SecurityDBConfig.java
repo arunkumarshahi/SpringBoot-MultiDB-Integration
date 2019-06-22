@@ -25,9 +25,9 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 
 @Configuration
-@EnableJpaRepositories(basePackages = "com.example.demo", entityManagerFactoryRef = "securityEntityManagerFactory", transactionManagerRef = "securityTransactionManager")
-@ComponentScan("com.example.demo")
-@EntityScan("com.example.demo")  
+@EnableJpaRepositories(basePackages = "com.example.demo.security.repositories", entityManagerFactoryRef = "securityEntityManagerFactory", transactionManagerRef = "securityTransactionManager")
+@ComponentScan("com.example.demo.security.entities")
+@EntityScan("com.example.demo.security.entities")  
 public class SecurityDBConfig {
 	@Autowired
 	private Environment env;
@@ -59,7 +59,7 @@ public class SecurityDBConfig {
 	public LocalContainerEntityManagerFactoryBean securityEntityManagerFactory() {
 		LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
 		factory.setDataSource(securityDataSource());
-		factory.setPackagesToScan("com.example.demo");
+		factory.setPackagesToScan("com.example.demo.security.entities");
 		factory.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
 		Properties jpaProperties = new Properties();
 		jpaProperties.put("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));

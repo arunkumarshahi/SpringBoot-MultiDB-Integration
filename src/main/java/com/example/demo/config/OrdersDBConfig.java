@@ -25,8 +25,8 @@ import org.springframework.transaction.PlatformTransactionManager;
 
 @Configuration
 @EnableJpaRepositories(basePackages = "com.example.demo.orders.repositories", entityManagerFactoryRef = "ordersEntityManagerFactory", transactionManagerRef = "ordersTransactionManager")
-@ComponentScan("com.example.demo")
-@EntityScan("com.example.demo")  
+@ComponentScan("com.example.demo.orders.entities")
+@EntityScan("com.example.demo.orders.entities")  
 public class OrdersDBConfig {
 	@Autowired
 	private Environment env;
@@ -55,7 +55,7 @@ public class OrdersDBConfig {
 	public LocalContainerEntityManagerFactoryBean ordersEntityManagerFactory() {
 		LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
 		factory.setDataSource(ordersDataSource());
-		factory.setPackagesToScan("com.example.demo");
+		factory.setPackagesToScan("com.example.demo.orders.entities");
 		factory.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
 		Properties jpaProperties = new Properties();
 		jpaProperties.put("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));

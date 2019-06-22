@@ -28,30 +28,32 @@ public class SpringBootMultipleDbApplicationTests {
 
 	@Test
 	public void findAllUsers() {
-		Optional<User> users = userRepository.findById(1);
+		List<User> users = (List<User>) userRepository.findAll();
 		assertNotNull(users);
-		System.out.println("user by id ==="+users);
-		assertTrue(!users.isPresent());
+		for(User u:users) {
+		System.out.println("user by id ==="+u);
+		}
+		//assertTrue(!users.isPresent());
 	}
 
 	@Test
 	public void CreateOrder() {
 		Order order=new Order();
-		order.setCustomerEmail("akm");
-		order.setCustomerName("arun km ");
+		order.setCustomerEmail("@vodafine");
+		order.setCustomerName("arun vf	 ");
 		Order neworders = orderRepository.save(order);
-		//assertNotNull(orders);
+		assertNotNull(neworders);
 		System.out.println("neworders = "+neworders);
-		//assertTrue(!orders.isEmpty());
+		
 	}
 	
 	@Test
 	public void CreateUser() {
 		User user=new User();
 		user.setName("ak");
-		user.setEmail("arun k");
+		user.setEmail("arunkr@gmail.com");
 		User newUser = userRepository.save(user);
-		//assertNotNull(orders);
+		assertNotNull(newUser);
 		System.out.println("newUser.... = "+newUser);
 		//assertTrue(!orders.isEmpty());
 	}
